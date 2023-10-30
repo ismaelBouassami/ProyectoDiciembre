@@ -1,11 +1,23 @@
 export { renderBoard };
 import { ComprobarJugador } from "./EstadoJugador.js";
-import { overCasilla } from "../conecta4.js";
+//import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";
 import { reiniciarTablero } from "./RebootGame.js";
 
 function renderBoard(statecopy) {
   let boardHtml = document.getElementById("board");
+  let primerafila = document.getElementById("ficha_a_tirar");
+
+  //primerafila.innerHTML="";
+  for (let i = 0; i < 7; i++) {
+    let celdaFicha = document.createElement("div");
+    celdaFicha.classList.add("casillaover"); // Puedes agregar estilos CSS para celdas si lo deseas
+   // ficha_a_tirar[0][i] = celdaFicha;
+    primerafila.append(celdaFicha);
+    
+    // Llena overCasilla con las mismas celdas
+    
+  }
   boardHtml.innerHTML = ""; // Limpia el tablero antes de renderizar
   for (let fila = 0; fila < statecopy.tablero.length; fila++) {
     for (let columna = 0; columna < statecopy.tablero[fila].length; columna++) {
@@ -16,12 +28,12 @@ function renderBoard(statecopy) {
         celda.classList.add("casillaRoja");
 
         //quitar la ficha superior
-        overCasilla[0][columna].classList.remove("casillaOverRoja");
-        overCasilla[0][columna].classList.add("casillaOver");
+        statecopy.overCasilla[0][columna].classList.remove("casillaOverRoja");
+        statecopy.overCasilla[0][columna].classList.add("casillaOver");
       } else if (statecopy.tablero[fila][columna] === 2) {
         celda.classList.add("casillaAzul");
-        overCasilla[0][columna].classList.remove("casillaOverAzul");
-        overCasilla[0][columna].classList.add("casillaOver");
+        statecopy.overCasilla[0][columna].classList.remove("casillaOverAzul");
+        statecopy.overCasilla[0][columna].classList.add("casillaOver");
       }
 
       boardHtml.appendChild(celda);
@@ -96,12 +108,12 @@ function renderBoard(statecopy) {
               ///);
             if (statecopy.jugadorRojo) {
             //  console.log("Rojoover");
-              overCasilla[0][columna].classList.remove("casillaOver");
-              overCasilla[0][columna].classList.add("casillaOverRoja");
+              statecopy.overCasilla[0][columna].classList.remove("casillaOver");
+              statecopy.overCasilla[0][columna].classList.add("casillaOverRoja");
             } else {
             //  console.log("Azulover");
-              overCasilla[0][columna].classList.remove("casillaOver");
-              overCasilla[0][columna].classList.add("casillaOverAzul");
+              statecopy.overCasilla[0][columna].classList.remove("casillaOver");
+              statecopy.overCasilla[0][columna].classList.add("casillaOverAzul");
             }
 
             break;
@@ -110,13 +122,13 @@ function renderBoard(statecopy) {
       });
       celda.addEventListener("mouseout", function () {
         for (let fila = 5; fila >= 0; fila--) {
-          //console.log("EStas intentando hacer over:" + overCasilla[0][columna]);
+          //console.log("EStas intentando hacer over:" + statecopy.overCasilla[0][columna]);
           if (statecopy.jugadorRojo) {
-            overCasilla[0][columna].classList.remove("casillaOverRoja");
-            overCasilla[0][columna].classList.add("casillaOver");
+            statecopy.overCasilla[0][columna].classList.remove("casillaOverRoja");
+            statecopy.overCasilla[0][columna].classList.add("casillaOver");
           } else {
-            overCasilla[0][columna].classList.remove("casillaOverAzul");
-            overCasilla[0][columna].classList.add("casillaOver");
+            statecopy.overCasilla[0][columna].classList.remove("casillaOverAzul");
+            statecopy.overCasilla[0][columna].classList.add("casillaOver");
           }
 
           break;

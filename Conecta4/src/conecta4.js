@@ -6,19 +6,29 @@
 //import { ListenersBoard } from "./Reglas/listenersBoard.js";
 import {mostrarFicha} from "./Reglas/MostrarFichaATirar.js"
 import { CrearTablero } from "./Reglas/CreateBoard.js";
-export { miboard };
+import { renderBoard } from "./Reglas/renderBoard.js";
 export { state };
-export {overCasilla};
+
+
+
 
   let state = {
     jugadorRojo: true,
     juegoEnCurso: true,
     win: "",
     tablero: [],
+    overCasilla:[],
   };
-
-  const overCasilla = mostrarFicha();
+  
+document.addEventListener("DOMContentLoaded",function () {
   const miboard = CrearTablero(state);
- 
- 
+  console.log(state);
+  const overCasilla = mostrarFicha(state);
+  console.log(state);
+  renderBoard(state);
+  console.log(miboard);
+})
+
+  
+
  

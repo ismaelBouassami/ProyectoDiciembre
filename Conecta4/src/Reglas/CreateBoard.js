@@ -15,6 +15,6 @@ function CrearTablero(statecopy) {
       statecopy.tablero[i] = new Array(columnas).fill(0);
     }
   //console.log("Creartablero estado"+statecopy);
-    renderBoard(statecopy);
+  // renderBoard(statecopy);
     return statecopy;
   }

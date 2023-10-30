@@ -1,17 +1,16 @@
-import { CrearTablero } from "../Reglas/CreateBoard.js";
-import { state } from "../conecta4.js";
-import { ComprobarJugador } from "../Reglas/ComprobarJugador.js";
-import { overCasilla } from "../conecta4.js";
-import { comprobarGanador } from "../Reglas/Win.js";
-import { reiniciarTablero } from "../Reglas/RebootGame.js";
+import { CrearTablero } from "../src/Reglas/CreateBoard.js";
+import { state } from "../src/conecta4.js";
+
 
 describe('Conecta 4', function () {
     describe('Board',function () {
         it('Create Board',function () {
             const result= CrearTablero(state);
-            exepect(result).toBeDefined();
+
             expect(result).toEqual(jasmine.any(Object));
-            expect(result).toBeInstanceOf(Array);
+            expect(result.tablero.length).toEqual(6);
+            expect(result.tablero[0].length).toEqual(7);
+            expect(result.tablero).toEqual(jasmine.any(Array));
         }); 
     });
 });
