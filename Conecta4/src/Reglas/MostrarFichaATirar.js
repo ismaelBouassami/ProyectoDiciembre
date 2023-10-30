@@ -10,5 +10,5 @@ function mostrarFicha(state) {
 
   
   
-  return state; // Devuelve overCasilla en lugar de primerafila
+  return state; 
 }

@@ -1,8 +1,8 @@
 {
-  "type": "module",
-  "name": "conecta4",
+  "name": "proyectodiciembre",
   "version": "1.0.0",
-  "main": "conecta4.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,5 @@
   "dependencies": {
     "jasmine-browser-runner": "^2.3.0",
     "jasmine-core": "^5.1.1"
-  },
-  "description": ""
+  }
 }

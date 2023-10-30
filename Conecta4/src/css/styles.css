@@ -34,6 +34,7 @@ h1 {
     padding: 10px;
     margin: auto; /*Para centrar el tablero*/
     width: 455px; 
+    height: 60px;
     border-radius: 20px;
 }
 .mensaje-ganador {
