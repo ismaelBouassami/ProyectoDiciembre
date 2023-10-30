@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin: 20px auto;
+
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    grid-template-rows: repeat(6, 60px); 
+    gap: 6px;
+    border: 2px solid #333;
+    padding: 10px;
+    background-color: #000000;
+    margin: auto; /*Para centrar el tablero*/
+    height: 390px; 
+    width: 455px; 
+    border-radius: 20px;
+}
+#ficha_a_tirar{
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    grid-template-rows: repeat(1 60px); 
+    gap: 6px;
+    padding: 10px;
+    margin: auto; /*Para centrar el tablero*/
+    width: 455px; 
+    border-radius: 20px;
+}
+.mensaje-ganador {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #3498db; /* Fondo azul */
+    padding: 20px;
+    border: 2px solid #2980b9; /* Borde azul más oscuro */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: white; /* Texto blanco */
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  .mensaje-texto {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #cerrar-mensaje, #reiniciar {
+    background-color: #e818b4; /* Fondo rojo */
+    color: white; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #cerrar-mensaje:hover, #reiniciar:hover {
+    background-color: #e818b4; /* Fondo rojo más oscuro en el hover */
+  }
+  
+  
+  
+
+.casilla {
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff;
+    border: 1px solid #333;
+    border-radius: 50%;
+}
+.casillaOver {
+    
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border: 1px solid #33333300;
+    border-radius: 50%;
+}
+.casillaOverRoja {
+    width: 60px;
+    height: 60px;
+    background-color: #fc0000;
+    border: 1px solid #333;
+    border-radius: 50%;
+}
+.casillaOverAzul{
+    width: 60px;
+    height: 60px;
+    background-color: #4400ff;
+    border: 1px solid #333;
+    border-radius: 50%;
+}
+.casilla.casillaRoja {
+    background-color: #fc0000;
+  }
+  
+  .casilla.casillaAzul {
+    background-color: #4400ff;
+  }
+  
+.JugadorRojo {
+    color: #fc0000;
+    
+}
+.JugadorAzul{
+   
+    color: #4400ff;
+    
+}
