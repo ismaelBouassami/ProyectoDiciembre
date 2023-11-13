@@ -11,6 +11,7 @@ describe('Conecta 4', function () {
             expect(result.tablero.length).toEqual(6);
             expect(result.tablero[0].length).toEqual(7);
             expect(result.tablero).toEqual(jasmine.any(Array));
+
         }); 
     });
 });

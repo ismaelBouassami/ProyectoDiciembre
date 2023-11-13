@@ -37,7 +37,7 @@ h1 {
     height: 60px;
     border-radius: 20px;
 }
-.mensaje-ganador {
+.mensaje-ganador, #menu {
     display: none;
     position: absolute;
     top: 50%;
@@ -51,13 +51,17 @@ h1 {
     text-align: center;
     border-radius: 10px;
   }
-  
+  #titulo {
+    font-size: 4em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+}
   .mensaje-texto {
     font-size: 18px;
     margin-bottom: 10px;
   }
   
-  #cerrar-mensaje, #reiniciar {
+  #cerrar-mensaje, #reiniciar, #jugar ,#cargar ,#guardar{
     background-color: #e818b4; /* Fondo rojo */
     color: white; /* Texto blanco */
     border: none;

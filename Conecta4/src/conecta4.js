@@ -20,14 +20,28 @@ export { state };
     overCasilla:[],
   };
   
-document.addEventListener("DOMContentLoaded",function () {
-  const miboard = CrearTablero(state);
-  console.log(state);
-  const overCasilla = mostrarFicha(state);
-  console.log(state);
-  renderBoard(state);
-  console.log(miboard);
-})
+  const menu = document.getElementById("menu");
+  const jugarBtn = document.getElementById("jugar");
+  const cargarBtn = document.getElementById("cargar");
+  const tablero= document.getElementById("Juego");
+  menu.style.display= "block";
+  tablero.style.display= "none";
+  jugarBtn.addEventListener("click", function () {
+    menu.style.display= "none";
+    tablero.style.display= "block";
+      const miboard = CrearTablero(state);
+      const overCasilla = mostrarFicha(state);
+      renderBoard(state);
+    
+   
+  });
+
+  cargarBtn.addEventListener("click", function () {
+     alert("cargar")
+     menu.style.display= "none";
+    tablero.style.display= "block";
+  });
+
 
   
 

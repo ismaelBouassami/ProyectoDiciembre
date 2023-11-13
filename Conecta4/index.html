@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/styles.css">
     <title>Conecta 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 </head>
 
 <body>
     <div id="container">
-        <h1>Conecta 4</h1>
+        <h1 id="titulo">Conecta <span style="color: #e74c3c;">4</span></h1>
+        <div id="menu">
+            <button id="jugar">Jugar</button>
+            <button id="cargar">Cargar Partida</button>
+        </div>
+        <div id="Juego">
         <div id="Estado_Jugador">
             <p><b>Turno:</b> <span style="font-weight: bold;" id="jugadorColor" class="JugadorRojo">JugadorRojo</span></p>
            
@@ -23,8 +30,9 @@
           
         <div id="ficha_a_tirar"></div>
         <div id="board">
-           
+        
         </div>
+        <button id="guardar">Guardar</button></div>
     </div>
 <script src="./src/conecta4.js" type="module"></script>
 </body>

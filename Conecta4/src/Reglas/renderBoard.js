@@ -3,8 +3,14 @@ import { ComprobarJugador } from "./EstadoJugador.js";
 //import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";
 import { reiniciarTablero } from "./RebootGame.js";
-
+import {saveGame,loadGame} from "../supabase/GenericSupabase.js"
 function renderBoard(statecopy) {
+  const guardar=document.getElementById("guardar");
+  
+  guardar.addEventListener("click", function () {
+    insert(statecopy);
+
+  })
   let boardHtml = document.getElementById("board");
   let primerafila = document.getElementById("ficha_a_tirar");
 
