@@ -1,16 +1,30 @@
 export { renderBoard };
+import {state} from '../conecta4.js';
 import { ComprobarJugador } from "./EstadoJugador.js";
 //import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";
 import { reiniciarTablero } from "./RebootGame.js";
-import {saveGame,loadGame} from "../supabase/GenericSupabase.js"
-function renderBoard(statecopy) {
-  const guardar=document.getElementById("guardar");
-  
-  guardar.addEventListener("click", function () {
-    insert(statecopy);
+import {saveGame,loadGame} from "../supabase/GenericSupabase.js";
 
-  })
+const guardar=document.getElementById("guardar");
+  
+guardar.addEventListener("click", function () {
+  saveGame(state);
+  
+
+});
+const cargar=document.getElementById("cargar");
+  
+cargar.addEventListener("click", async function () {
+ 
+   let statecopy =await loadGame(state);
+  console.log('state_2', statecopy);
+  
+  alert("Cargar partida");
+
+});
+function renderBoard(statecopy) {
+ 
   let boardHtml = document.getElementById("board");
   let primerafila = document.getElementById("ficha_a_tirar");
 
