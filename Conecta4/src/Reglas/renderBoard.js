@@ -1,43 +1,40 @@
 export { renderBoard };
-import {state} from '../conecta4.js';
+import { state } from "../conecta4.js";
 import { ComprobarJugador } from "./EstadoJugador.js";
 //import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";
 import { reiniciarTablero } from "./RebootGame.js";
-import {saveGame,loadGame} from "../supabase/GenericSupabase.js";
+import { saveGame, loadGame, getData ,updateData} from "../supabase/GenericSupabase.js";
 
-const guardar=document.getElementById("guardar");
-  
+const guardar = document.getElementById("guardar");
+
 guardar.addEventListener("click", function () {
   saveGame(state);
-  
-
 });
-const cargar=document.getElementById("cargar");
-  
-cargar.addEventListener("click", async function () {
- 
-   let statecopy =await loadGame(state);
-  console.log('state_2', statecopy);
-  
-  alert("Cargar partida");
+const cargar = document.getElementById("cargar");
 
+cargar.addEventListener("click", async function () {
+  let statecopy = await getData();
+  console.log("statecopy", statecopy);
+if (statecopy!==null) {
+  
+  renderBoard(statecopy);
+}
+  console.log("Cargar partida");
 });
 function renderBoard(statecopy) {
- 
   let boardHtml = document.getElementById("board");
   let primerafila = document.getElementById("ficha_a_tirar");
 
-  primerafila.innerHTML="";
+  primerafila.innerHTML = "";
   boardHtml.innerHTML = ""; // Limpia el tablero antes de renderizar
   for (let fila = 0; fila < statecopy.tablero.length; fila++) {
     for (let columna = 0; columna < statecopy.tablero[fila].length; columna++) {
-
-      if (fila===0) {
+      if (fila === 0) {
         let celdaOVer = document.createElement("div");
 
-        celdaOVer.className="casillaover"; // Puedes agregar estilos CSS para celdas si lo deseas
-       // ficha_a_tirar[0][i] = celdaFicha;
+        celdaOVer.className = "casillaover"; // Puedes agregar estilos CSS para celdas si lo deseas
+        // ficha_a_tirar[0][i] = celdaFicha;
         primerafila.append(celdaOVer);
       }
       const celda = document.createElement("div");
@@ -45,11 +42,8 @@ function renderBoard(statecopy) {
 
       if (statecopy.tablero[fila][columna] === 1) {
         celda.classList.add("casillaRoja");
-
-        
       } else if (statecopy.tablero[fila][columna] === 2) {
         celda.classList.add("casillaAzul");
-      
       }
 
       boardHtml.appendChild(celda);
@@ -61,12 +55,11 @@ function renderBoard(statecopy) {
             if (statecopy.tablero[fila][columna] === 0) {
               if (statecopy.jugadorRojo) {
                 statecopy.tablero[fila][columna] = 1;
-                
               } else {
                 statecopy.tablero[fila][columna] = 2;
               }
 
-           /*   console.log(
+              /*   console.log(
                 "Ha tirado ficha en " +
                   fila +
                   " " +
@@ -74,7 +67,7 @@ function renderBoard(statecopy) {
                   " =" +
                   statecopy.tablero[fila][columna]
               );*/
-
+              updateData(statecopy);
               renderBoard(statecopy); // Actualiza la representación del tablero
               statecopy.jugadorRojo = !statecopy.jugadorRojo; // Alternar el jugador
 
@@ -90,7 +83,6 @@ function renderBoard(statecopy) {
         const cerrarMensaje = document.getElementById("cerrar-mensaje");
         const reiniciarJuego = document.getElementById("reiniciar");
         reiniciarJuego.addEventListener("click", function () {
-         
           statecopy.jugadorRojo = true;
           statecopy.juegoEnCurso = true;
           reiniciarTablero(statecopy);
@@ -119,50 +111,43 @@ function renderBoard(statecopy) {
         }
       });
 
-
       let filaover = document.getElementById("ficha_a_tirar");
       let divSeleccionado = filaover.querySelectorAll(".casillaover")[columna];
 
       celda.addEventListener("mouseover", function () {
         if (statecopy.juegoEnCurso) {
-       
-         //   console.log(
-              ///);
-            if (statecopy.jugadorRojo) {
+          //   console.log(
+          ///);
+          if (statecopy.jugadorRojo) {
             //  console.log("Rojoover");
-           
-            statecopy.overCasilla[0][columna]=1;
+
+            statecopy.overCasilla[0][columna] = 1;
             divSeleccionado.classList.remove("casillaover");
             divSeleccionado.classList.add("casillaOverRoja");
-           console.log('poniendo rojo');
-            } else {
+            console.log("poniendo rojo");
+          } else {
             //  console.log("Azulover");
-            statecopy.overCasilla[0][columna]=2;
+            statecopy.overCasilla[0][columna] = 2;
             divSeleccionado.classList.remove("casillaover");
             divSeleccionado.classList.add("casillaOverAzul");
-            console.log('poniendo azul');
-            }
-
-         
-          
+            console.log("poniendo azul");
+          }
         }
       });
       celda.addEventListener("mouseout", function () {
-        
-          //console.log("EStas intentando hacer over:" + statecopy.overCasilla[0][columna]);
-          if (statecopy.jugadorRojo) {
-            statecopy.overCasilla[0][columna]=0;
-            divSeleccionado.classList.remove("casillaOverRoja");
-            divSeleccionado.classList.add("casillaover");
-            
-            console.log('quitando rojo');
-          } else {
-           console.log();
-           statecopy.overCasilla[0][columna]=0;
-           divSeleccionado.classList.remove("casillaOverAzul");
-            divSeleccionado.classList.add("casillaover");
-           console.log('quitando azul');
-          
+        //console.log("EStas intentando hacer over:" + statecopy.overCasilla[0][columna]);
+        if (statecopy.jugadorRojo) {
+          statecopy.overCasilla[0][columna] = 0;
+          divSeleccionado.classList.remove("casillaOverRoja");
+          divSeleccionado.classList.add("casillaover");
+
+          console.log("quitando rojo");
+        } else {
+          console.log();
+          statecopy.overCasilla[0][columna] = 0;
+          divSeleccionado.classList.remove("casillaOverAzul");
+          divSeleccionado.classList.add("casillaover");
+          console.log("quitando azul");
         }
       });
     }
