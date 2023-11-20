@@ -1,5 +1,5 @@
 export { renderBoard };
-import { state } from "../conecta4.js";
+import { state } from "../gameViews.js/conecta4.js";
 import { ComprobarJugador } from "./EstadoJugador.js";
 //import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";

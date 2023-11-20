@@ -4,9 +4,9 @@
 //import { reiniciarTablero } from "./Reglas/RebootGame.js";
 //import {renderBoard} from "./Reglas/renderBoard.js";
 //import { ListenersBoard } from "./Reglas/listenersBoard.js";
-import {mostrarFicha} from "./Reglas/MostrarFichaATirar.js"
-import { CrearTablero } from "./Reglas/CreateBoard.js";
-import { renderBoard } from "./Reglas/renderBoard.js";
+import {mostrarFicha} from "../Reglas/MostrarFichaATirar.js"
+import { CrearTablero } from "../Reglas/CreateBoard.js";
+import { renderBoard } from "../Reglas/renderBoard.js";
 export { state };
 
 
