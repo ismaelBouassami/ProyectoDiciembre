@@ -25,9 +25,11 @@ if (statecopy!==null) {
 function renderBoard(statecopy) {
   let boardHtml = document.getElementById("board");
   let primerafila = document.getElementById("ficha_a_tirar");
-
+  let quienJuega = document.getElementById("jugadorColor");
+  quienJuega.inert="";
   primerafila.innerHTML = "";
   boardHtml.innerHTML = ""; // Limpia el tablero antes de renderizar
+  ComprobarJugador(statecopy);
   for (let fila = 0; fila < statecopy.tablero.length; fila++) {
     for (let columna = 0; columna < statecopy.tablero[fila].length; columna++) {
       if (fila === 0) {
@@ -67,11 +69,13 @@ function renderBoard(statecopy) {
                   " =" +
                   statecopy.tablero[fila][columna]
               );*/
-              updateData(statecopy);
+              
               renderBoard(statecopy); // Actualiza la representación del tablero
               statecopy.jugadorRojo = !statecopy.jugadorRojo; // Alternar el jugador
-
               ComprobarJugador(statecopy);
+              
+              updateData(statecopy);
+              
               break;
             }
           }
