@@ -1,4 +1,4 @@
-export { saveGame ,loadGame,getData,updateData,supabaseKey,supabaseUrl, supaRequest};
+export { saveGame ,loadGame,getData,updateData,supabaseKey,supabaseUrl, supaRequest,headers};
 // Configura tus credenciales y URL de Supabase
 const supabaseUrl = "https://your-supabase-url.supabase.co";
 const supabaseKey ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVudGt0bXJvbG9mdGFidHJ5bW92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkyNjY0MzYsImV4cCI6MjAxNDg0MjQzNn0.9UCatd_9uVYjwsztpV1xbsOaM3PEq3gq_kBxJPXxBsM";

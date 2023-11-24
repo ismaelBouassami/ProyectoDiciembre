@@ -6,7 +6,7 @@ function loginForm() {
   const divLogin = document.createElement('div');
   divLogin.classList.add('formulari_centrat');
 
-  divLogin.innerHTML = `  <form>
+  divLogin.innerHTML = ` <h1 id="titulo">Login</h1> <form>
   <div class="mb-3">
     <label for="loginpassword" class="form-label">Email address</label>
     <input type="email" class="form-control" id="loginemail" aria-describedby="emailHelp">

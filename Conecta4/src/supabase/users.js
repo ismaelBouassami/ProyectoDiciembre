@@ -1,5 +1,5 @@
 import {loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase,} from './supabase.js';
-import {getData,updateData} from './GenericSupabase.js'
+import {getData,updateData,supaRequest} from './GenericSupabase.js'
   
   export {
     loginUser, isLogged, registerUser, logout, updateProfile, getProfile, forgotPassword, loginWithToken,

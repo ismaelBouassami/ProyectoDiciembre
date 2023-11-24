@@ -1,6 +1,6 @@
 export {loginSupabase,signUpSupabase,logoutSupabase,recoverPasswordSupabase}
 
-
+import {supaRequest,headers} from './GenericSupabase.js';
 const urlBase= "https://untktmroloftabtrymov.supabase.co";
 async function loginSupabase(email, password) {
   const url = `${urlBase}/auth/v1/token?grant_type=password`;
