@@ -1,2 +1,52 @@
 @import "~bootstrap/scss/bootstrap";
 
+// Personaliza el formulario
+form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-size: 1rem;
+}
+
+.form-control {
+  padding: 0.5rem;
+}
+
+.form-text {
+  font-size: 0.875rem;
+  color: #6c757d; // Color de texto secundario
+}
+
+#forgotPassword {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #007bff; // Color azul de enlace
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form-check-label {
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+#errors {
+  margin-top: 1rem;
+  color: #dc3545; // Color de error de Bootstrap
+}
+
+// Puedes agregar más estilos según sea necesario

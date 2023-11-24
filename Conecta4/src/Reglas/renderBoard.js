@@ -1,39 +1,60 @@
-export { renderBoard,LoadListener,saveGameList };
+export { renderBoard ,listenersGame};
 import { state } from "../gameViews/conecta4.js";
 import { ComprobarJugador } from "./EstadoJugador.js";
+import { CrearTablero } from "./CreateBoard.js";
+import { mostrarFicha } from "./MostrarFichaATirar.js";
 //import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";
 import { reiniciarTablero } from "./RebootGame.js";
-import { saveGame, loadGame, getData ,updateData} from "../supabase/GenericSupabase.js";
+import {
+  saveGame,
+  loadGame,
+  getData,
+  updateData,
+} from "../supabase/GenericSupabase.js";
 
+function listenersGame() {
+  const menu = document.getElementById("menuGame");
+  const jugarBtn = document.getElementById("jugar");
+  const cargarBtn = document.getElementById("cargar");
+  const tablero = document.getElementById("Juego");
+  menu.style.display = "block";
+  tablero.style.display = "none";
 
-function saveGameList() {
+  jugarBtn.addEventListener("click", function () {
+    menu.style.display = "none";
+    tablero.style.display = "block";
+    const miboard = CrearTablero(state);
+    const overCasilla = mostrarFicha(state);
+    renderBoard(state);
+  });
+
+  cargarBtn.addEventListener("click", function () {
+    alert("cargar");
+    menu.style.display = "none";
+    tablero.style.display = "block";
+  });
+
   const guardar = document.getElementById("guardar");
-  guardar.addEventListener("click", function () {
-  saveGame(state);
-});
-
+  guardar.addEventListener("click", async function () {
+    saveGame(state);
+  });
+  const cargar = document.getElementById("cargar");
+  cargar.addEventListener("click", async function () {
+    let statecopy = await getData();
+    console.log("statecopy", statecopy);
+    if (statecopy !== null) {
+      renderBoard(statecopy);
+    }
+    console.log("Cargar partida");
+  });
 }
 
-function LoadListener() {
-const cargar = document.getElementById("cargar");
-cargar.addEventListener("click", async function () {
-  let statecopy = await getData();
-  console.log("statecopy", statecopy);
-if (statecopy!==null) {
-  
-  renderBoard(statecopy);
-}
-  console.log("Cargar partida");
-});
-}
 function renderBoard(statecopy) {
-  LoadListener();
-  saveGameList()
   let boardHtml = document.getElementById("board");
   let primerafila = document.getElementById("ficha_a_tirar");
   let quienJuega = document.getElementById("jugadorColor");
-  quienJuega.inert="";
+  quienJuega.inert = "";
   primerafila.innerHTML = "";
   boardHtml.innerHTML = ""; // Limpia el tablero antes de renderizar
   ComprobarJugador(statecopy);
@@ -76,13 +97,13 @@ function renderBoard(statecopy) {
                   " =" +
                   statecopy.tablero[fila][columna]
               );*/
-              
+
               renderBoard(statecopy); // Actualiza la representación del tablero
               statecopy.jugadorRojo = !statecopy.jugadorRojo; // Alternar el jugador
               ComprobarJugador(statecopy);
-              
+
               updateData(statecopy);
-              
+
               break;
             }
           }

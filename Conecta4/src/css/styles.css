@@ -31,6 +31,7 @@ h1 {
 
 
 #board {
+  margin-top: 3em;
     display: grid;
     grid-template-columns: repeat(7, 60px);
     grid-template-rows: repeat(6, 60px); 
@@ -42,9 +43,10 @@ h1 {
     height: 390px; 
     width: 455px; 
     border-radius: 20px;
-    box-sizing: 0;
+    box-sizing: content-box!important;
 }
 #ficha_a_tirar{
+  box-sizing: content-box;
     display: grid;
     grid-template-columns: repeat(7, 60px);
     grid-template-rows: repeat(1 60px); 

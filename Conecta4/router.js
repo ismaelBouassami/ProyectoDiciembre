@@ -1,9 +1,9 @@
 //import { loginForm } from './src/views/login.js';
 import { home } from "./src/views/home.js";
 import { gameTemplate } from "./src/gameViews/templates.js";
-import { mostrarFicha } from "./src/Reglas/MostrarFichaATirar.js";
-import { CrearTablero } from "./src/Reglas/CreateBoard.js";
-import { renderBoard } from "./src/Reglas/renderBoard.js";
+import { loginForm } from "./src/views/login.js";
+import { logout } from "./src/supabase/users.js";
+import { renderBoard,listenersGame } from "./src/Reglas/renderBoard.js";
 import { state } from "./src/gameViews/conecta4.js";
 export { route };
 
@@ -33,29 +33,10 @@ function route(ruta) {
       break;
     case "#/game":
       main.innerHTML = "";
+      
       main.append(gameTemplate());
+      listenersGame();
     
-      const menu = document.getElementById("menuGame");
-      const jugarBtn = document.getElementById("jugar");
-      const cargarBtn = document.getElementById("cargar");
-      const tablero = document.getElementById("Juego");
-      menu.style.display = "block";
-      tablero.style.display = "none";
-
-      jugarBtn.addEventListener("click", function () {
-        menu.style.display = "none";
-        tablero.style.display = "block";
-        const miboard = CrearTablero(state);
-        const overCasilla = mostrarFicha(state);
-        renderBoard(state);
-      });
-
-      cargarBtn.addEventListener("click", function () {
-        alert("cargar");
-        menu.style.display = "none";
-        tablero.style.display = "block";
-      });
-
       //   if (params.get('id')) {
       //     generateGame(params.get('id')).then((divs) => main.append(...divs));
       //   } else if (localStorage.getItem('gameId')) {
