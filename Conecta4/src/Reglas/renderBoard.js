@@ -1,18 +1,22 @@
-export { renderBoard };
-import { state } from "../gameViews.js/conecta4.js";
+export { renderBoard,LoadListener,saveGameList };
+import { state } from "../gameViews/conecta4.js";
 import { ComprobarJugador } from "./EstadoJugador.js";
 //import { overCasilla } from "../conecta4.js";
 import { comprobarGanador } from "./Win.js";
 import { reiniciarTablero } from "./RebootGame.js";
 import { saveGame, loadGame, getData ,updateData} from "../supabase/GenericSupabase.js";
 
-const guardar = document.getElementById("guardar");
 
-guardar.addEventListener("click", function () {
+function saveGameList() {
+  const guardar = document.getElementById("guardar");
+  guardar.addEventListener("click", function () {
   saveGame(state);
 });
-const cargar = document.getElementById("cargar");
 
+}
+
+function LoadListener() {
+const cargar = document.getElementById("cargar");
 cargar.addEventListener("click", async function () {
   let statecopy = await getData();
   console.log("statecopy", statecopy);
@@ -22,7 +26,10 @@ if (statecopy!==null) {
 }
   console.log("Cargar partida");
 });
+}
 function renderBoard(statecopy) {
+  LoadListener();
+  saveGameList()
   let boardHtml = document.getElementById("board");
   let primerafila = document.getElementById("ficha_a_tirar");
   let quienJuega = document.getElementById("jugadorColor");

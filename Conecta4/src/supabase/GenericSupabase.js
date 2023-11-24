@@ -79,7 +79,7 @@ async function saveGame(state) {
         "Content-Type": " application/json",
         Prefer: " return=representation",
       },
-      body: JSON.stringify({ state_game: state }),
+      body: JSON.stringify({state_game: state }),
     }
   )
   .then(response => {

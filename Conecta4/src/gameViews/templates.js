@@ -1,8 +1,8 @@
 export {gameTemplate}
 
-const gameTemplate = ()=> {
+function gameTemplate  () {
 const template= `<h1 id="titulo">Conecta <span style="color: #e74c3c;">4</span></h1>
-<div id="menu"> 
+<div id="menuGame"> 
     <button id="jugar">Jugar</button>
     <button id="cargar">Cargar Partida</button>
 </div>
@@ -21,9 +21,13 @@ const template= `<h1 id="titulo">Conecta <span style="color: #e74c3c;">4</span><
 <div id="board">
 
 </div>
-<button id="guardar">Guardar</button></div>`;
+<div id="botonGuardar">
+<button id="guardar">Guardar</button>
+</div>
+</div>`;
 
 const wrapper = document.createElement("div")
 wrapper.innerHTML = template;
-return wrapper.childNodes.values()
+return wrapper;
 };
+

@@ -1,17 +1,34 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-}
+   
+    }
+
 
 .container {
     margin: 20px auto;
 
+}
+#botonGuardar{
+  display: flex;
+  justify-content: center;
+  margin-top:2em ;
 }
 
 h1 {
     font-size: 36px;
     margin-bottom: 20px;
 }
+#Estado_Jugador{
+  display: flex;
+  justify-content: center;
+}
+#guardar {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Agregado para centrar verticalmente */
+}
+
 
 #board {
     display: grid;
@@ -25,6 +42,7 @@ h1 {
     height: 390px; 
     width: 455px; 
     border-radius: 20px;
+    box-sizing: 0;
 }
 #ficha_a_tirar{
     display: grid;
@@ -37,7 +55,8 @@ h1 {
     height: 60px;
     border-radius: 20px;
 }
-.mensaje-ganador, #menu {
+
+.mensaje-ganador, #menuGame {
     display: none;
     position: absolute;
     top: 50%;
