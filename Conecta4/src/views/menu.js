@@ -17,6 +17,9 @@ const menu = () => `<nav class="navbar navbar-expand-lg bg-dark">
       <li class="nav-item">
       <a class="nav-link text-light" href="#/login">Login</a>
     </li>
+    <li class="nav-item">
+    <a class="nav-link text-light" href="#/register">Register</a>
+  </li>
       <li class="nav-item">
         <a class="nav-link text-light disabled" aria-disabled="true">Disabled</a>
       </li>
