@@ -1,5 +1,5 @@
 import {loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase,} from './supabase.js';
-import {getData,updateData,supaRequest} from './GenericSupabase.js'
+import {getData,getDataForm,updateData,supaRequest} from './GenericSupabase.js'
   
   export {
     loginUser, isLogged, registerUser, logout, updateProfile, getProfile, forgotPassword, loginWithToken,
@@ -87,7 +87,7 @@ import {getData,updateData,supaRequest} from './GenericSupabase.js'
   async function getProfile() {
     const access_token = localStorage.getItem('access_token');
     const uid = localStorage.getItem('uid');
-    const responseGet = await getData(`profiles?id=eq.${uid}&select=*`, access_token);
+    const responseGet = await getDataForm(`profiles?id=eq.${uid}&select=*`, access_token);
     console.log(responseGet);
     const { avatar_url } = responseGet[0];
     responseGet[0].avatar_blob = false;

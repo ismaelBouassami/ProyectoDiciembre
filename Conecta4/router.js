@@ -4,6 +4,7 @@ import { gameTemplate } from "./src/gameViews/templates.js";
 import { loginForm } from "./src/views/login.js";
 import { registerForm } from "./src/views/register.js";
 import { logout } from "./src/supabase/users.js";
+import { profileForm } from "./src/views/profile.js";
 import { renderBoard,listenersGame } from "./src/Reglas/renderBoard.js";
 import { state } from "./src/gameViews/conecta4.js";
 export { route };

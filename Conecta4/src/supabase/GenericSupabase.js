@@ -1,4 +1,4 @@
-export { saveGame ,loadGame,getData,updateData,supabaseKey,supabaseUrl, supaRequest,headers};
+export { saveGame ,loadGame,getData,updateData,supabaseKey,supabaseUrl, supaRequest,headers,getFileRequest,getDataForm};
 // Configura tus credenciales y URL de Supabase
 const supabaseUrl = "https://your-supabase-url.supabase.co";
 const supabaseKey ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVudGt0bXJvbG9mdGFidHJ5bW92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkyNjY0MzYsImV4cCI6MjAxNDg0MjQzNn0.9UCatd_9uVYjwsztpV1xbsOaM3PEq3gq_kBxJPXxBsM";
@@ -10,12 +10,38 @@ const headers = {
 //const supabase = createClient(supabaseUrl, supabaseKey);
 
 
+async function getFileRequest(url, token) {
+  const headersFile = {
+    apiKey: supabaseKey,
+    Authorization: `Bearer ${token}`,
+  };
+  const response = await fetch(`${url}`, {
+    method: 'GET',
+    headers: headersFile,
+
+  });
+  if (response.status >= 200 && response.status <= 300) {
+    if (response.headers.get('content-type')) {
+      const datos = await response.blob();
+      return datos;
+    }
+    return {};
+  }
+
+  return Promise.reject(await response.json());
+}
 async function getData() {
   const url = `https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.1&select=*id,state_game`;
   const headersAux = { ...headers, Authorization: `Bearer ${supabaseKey}` };
   const data = await supaRequest(url, 'get', headersAux);
   let id= localStorage.setItem("ID_apdate",data[0]?.id);
   return data[0]?.state_game;
+}
+async function getDataForm(URI) {
+  const url = `https://untktmroloftabtrymov.supabase.co/rest/v1/${URI}`;
+  const headersAux = { ...headers, Authorization: `Bearer ${supabaseKey}` };
+  const data = await supaRequest(url, 'get', headersAux);
+  return data;
 }
 async function updateData(data) {
   let id= localStorage.getItem("ID_apdate");
