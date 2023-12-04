@@ -31,7 +31,7 @@ function loginForm() {
     const password = divLogin.querySelector('#loginpassword').value;
     loginUser(email, password).then((status) => {
       if (status.success){
-        localStorage.setItem(email);
+        localStorage.setItem("email",email);
          window.location.hash = '#/';
        }
       else {

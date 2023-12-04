@@ -1,5 +1,5 @@
 import {loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase,} from './supabase.js';
-import {getData,getDataForm,updateData,supaRequest} from './GenericSupabase.js'
+import {getData,getDataForm,updateData,updateProfileData,supaRequest,fileRequest,getFileRequest} from './GenericSupabase.js'
   
   export {
     loginUser, isLogged, registerUser, logout, updateProfile, getProfile, forgotPassword, loginWithToken,
@@ -68,6 +68,7 @@ import {getData,getDataForm,updateData,supaRequest} from './GenericSupabase.js'
     const access_token = localStorage.getItem('access_token');
     const uid = localStorage.getItem('uid');
   
+    console.log("AccesToken"+access_token);
     const formImg = new FormData();
     formImg.append('avatar', profile.avatar, 'avatarProfile.png');
   
@@ -75,11 +76,11 @@ import {getData,getDataForm,updateData,supaRequest} from './GenericSupabase.js'
   
     const avatarResponse = await fileRequest(`/storage/v1/object/avatars/avatar${uid}.png`, formImg, access_token);
   
-    // console.log(avatarResponse);
+     console.log("QUE LO QUE TA PASANDO"+avatarResponse);
     profile.avatar_url = avatarResponse.urlAvatar;
     delete profile.avatar;
   
-    const responseUpdate = await updateData(`profiles?id=eq.${uid}&select=*`, access_token, profile);
+    const responseUpdate = await updateProfileData(`profiles?id=eq.${uid}&select=*`, access_token, profile);
     // console.log(responseUpdate);
     // createData('profiles',access_token,profile);
   }
