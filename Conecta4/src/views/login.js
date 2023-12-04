@@ -30,7 +30,10 @@ function loginForm() {
     const email = divLogin.querySelector('#loginemail').value;
     const password = divLogin.querySelector('#loginpassword').value;
     loginUser(email, password).then((status) => {
-      if (status.success) window.location.hash = '#/';
+      if (status.success){
+        localStorage.setItem(email);
+         window.location.hash = '#/';
+       }
       else {
         divLogin.querySelector('#errors').innerHTML = status.errorText;
       }

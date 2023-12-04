@@ -13,87 +13,92 @@ function profileForm() {
     dataProfile = dataProfile[0];
     console.log(dataProfile);
 
-    divLogin.innerHTML = `<form action="action_page.php" id="formProfile" style="border: 1px solid #ccc">
-    <div class="container">
-      <h1>Profile</h1>
-      
-      <hr />
+    divLogin.innerHTML = `<form action="action_page.php" id="formProfile" style="border: 1px solid #ccc" class="container mt-5">
+    <h1 class="mb-4">Profile</h1>
+    <hr />
 
-      <label for="email"><b>Email</b></label>
-      <input
-        id="signupemail"
-        type="text"
-        placeholder="Enter Email"
-        name="email"
-        required
-        readonly
-        value="${localStorage.getItem('email')}"
-      />
-
-      <label for="psw"><b>Password</b></label>
-      <input
-        type="password"
-        id="signuppassword"
-        placeholder="Enter Password"
-        name="psw"
-        required
-      />
-
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input
-        type="password"
-        placeholder="Repeat Password"
-        name="psw-repeat"
-        required
-      />
-      <button type="button" class="signupbtn login" id="chgpass">Change Password</button>
-
-      <label for="username"><b>Username</b></label>
-      <input
-        type="text"
-        placeholder="user name"
-        name="username"
-        id = "username"
-        value = "${dataProfile.username}"
-      />
-
-      <label for="fullname"><b>Full Name</b></label>
-      <input
-        type="text"
-        placeholder="fullname"
-        name="full_name"
-        value = "${dataProfile.full_name}"
-      />
-
-
-      <label for="web"><b>Web Site</b></label>
-      <input
-        type="text"
-        placeholder="web"
-        name="website"
-        value = "${dataProfile.website}"
-      />
-  <div>
-      <img class="avatar_profile" style="max-width: 200px" id="avatar_prev" src="${dataProfile.avatar_blob ? dataProfile.avatar_blob : ''}"/>
-</div>
-      <label for="avatar"><b>Avatar</b></label>
-      <input
-        type="file"
-        id="avatar"
-        name="avatar"
-      />
-  
-
-
-
-
-      <div class="clearfix">
-
-        <button type="button" class="signupbtn login" id="update">Update Profile</button>
-      </div>
+    <div class="form-group">
+        <label for="signupemail"><b>Email</b></label>
+        <input
+            id="signupemail"
+            type="text"
+            placeholder="Enter Email"
+            name="email"
+            class="form-control"
+            required
+            readonly
+            value="${localStorage.getItem('email')}"
+        />
     </div>
-  </form>`;
 
+    <div class="form-group">
+        <label for="signuppassword"><b>Password</b></label>
+        <input
+            type="password"
+            id="signuppassword"
+            placeholder="Enter Password"
+            name="psw"
+            class="form-control"
+            required
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input
+            type="password"
+            placeholder="Repeat Password"
+            name="psw-repeat"
+            class="form-control"
+            required
+        />
+        <button type="button" class="btn btn-secondary mt-2" id="chgpass">Change Password</button>
+    </div>
+
+    <div class="form-group">
+        <label for="username"><b>Username</b></label>
+        <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            id="username"
+            class="form-control"
+            value="${dataProfile.username}"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="full_name"><b>Full Name</b></label>
+        <input
+            type="text"
+            placeholder="Full Name"
+            name="full_name"
+            class="form-control"
+            value="${dataProfile.full_name}"
+        />
+    </div>
+
+    
+
+    <div class="form-group">
+        <img class="avatar_profile img-fluid" id="avatar_prev" src="${dataProfile.avatar_blob ? dataProfile.avatar_blob : ''}" />
+    </div>
+
+    <div class="form-group">
+        <label for="avatar"><b>Avatar</b></label>
+        <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            class="form-control-file"
+        />
+    </div>
+
+    <div class="clearfix">
+        <button type="button" class="btn btn-primary" id="update">Update Profile</button>
+    </div>
+</form>
+`;
     divLogin.querySelector('#update').addEventListener('click', async () => {
       const formData = new FormData(divLogin.querySelector('#formProfile'));
       const {
