@@ -57,6 +57,9 @@ h1 {
     height: 60px;
     border-radius: 20px;
 }
+.gametables{
+  text-align: center;
+}
 
 .mensaje-ganador, #menuGame {
     display: none;

@@ -5,8 +5,13 @@ import { loginForm } from "./src/views/login.js";
 import { registerForm } from "./src/views/register.js";
 import { logout } from "./src/supabase/users.js";
 import { profileForm } from "./src/views/profile.js";
-import { renderBoard,listenersGame } from "./src/Reglas/renderBoard.js";
+import { renderBoard, listenersGame } from "./src/Reglas/renderBoard.js";
 import { state } from "./src/gameViews/conecta4.js";
+import {
+  mostrarJuegosPorUID,
+  mostrarTabla,
+} from "./src/gameViews/generateAllgames.js";
+import { listGames } from "./src/views/listGames.js";
 export { route };
 
 function route(ruta) {
@@ -23,11 +28,22 @@ function route(ruta) {
   console.log({ params });
   ruta = ruta.split("?")[0];
   const main = document.querySelector("#container");
-
+  let uid = localStorage.getItem("uid");
+  console.log("UID del usuario = " + uid);
   switch (ruta) {
     case "#/":
       main.innerHTML = "";
       main.append(home());
+
+      const button = document.getElementById("startGame");
+      button.addEventListener("click", function () {
+        if (uid === "" || uid === null) {
+          alert("Debes estar logueado");
+          window.location.hash = "#/home";
+        } else {
+          window.location.hash = "#/game";
+        }
+      });
       break;
     case "#/login":
       main.innerHTML = "";
@@ -35,10 +51,10 @@ function route(ruta) {
       break;
     case "#/game":
       main.innerHTML = "";
-      
+      mostrarJuegosPorUID(uid);
       main.append(gameTemplate());
       listenersGame();
-    
+
       //   if (params.get('id')) {
       //     generateGame(params.get('id')).then((divs) => main.append(...divs));
       //   } else if (localStorage.getItem('gameId')) {
@@ -49,7 +65,9 @@ function route(ruta) {
       break;
     case "#/allgames":
       main.innerHTML = "";
-      main.append(generateGameList());
+      main.append(listGames());
+      mostrarJuegosPorUID(uid);
+     
       break;
     case "#/register":
       main.innerHTML = "";
