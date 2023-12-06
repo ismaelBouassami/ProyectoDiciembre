@@ -41,7 +41,7 @@ function route(ruta) {
           alert("Debes estar logueado");
           window.location.hash = "#/home";
         } else {
-          window.location.hash = "#/game";
+          window.location.hash = "#/allgames";
         }
       });
       break;
@@ -64,6 +64,8 @@ function route(ruta) {
       // }
       break;
     case "#/allgames":
+     
+
       main.innerHTML = "";
       main.append(listGames());
       mostrarJuegosPorUID(uid);

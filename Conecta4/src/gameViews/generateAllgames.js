@@ -56,4 +56,12 @@ function mostrarTabla(juegos) {
 
     idCelda.textContent = juego.id;
   });
+  const fila = tabla.insertRow();
+  const idCelda = fila.insertCell(0);
+
+  const newGame = document.createElement("button");
+  newGame.textContent = "New Game";
+  newGame.classList.add("btn", "btn-success");
+  newGame.addEventListener("click", () => newGame());
+  idCelda.appendChild(newGame);
 }
