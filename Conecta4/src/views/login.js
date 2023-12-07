@@ -1,10 +1,10 @@
-import { loginUser, logout, forgotPassword } from '../supabase/users.js';
+import { loginUser, logout, forgotPassword } from "../supabase/users.js";
 
 export { loginForm };
 
 function loginForm() {
-  const divLogin = document.createElement('div');
-  divLogin.classList.add('formulari_centrat');
+  const divLogin = document.createElement("div");
+  divLogin.classList.add("formulari_centrat");
 
   divLogin.innerHTML = ` <h1 id="titulo">Login</h1> <form>
   <div class="mb-3">
@@ -25,27 +25,34 @@ function loginForm() {
   <div id="errors"></div>
   </form>`;
 
-  divLogin.querySelector('#loginbutton').addEventListener('click', async (event) => {
-    event.preventDefault();
-    const email = divLogin.querySelector('#loginemail').value;
-    const password = divLogin.querySelector('#loginpassword').value;
-    loginUser(email, password).then((status) => {
-      if (status.success){
-        localStorage.setItem("email",email);
-         window.location.hash = '#/';
-       }
-      else {
-        divLogin.querySelector('#errors').innerHTML = status.errorText;
-      }
-    });
-  });
+  divLogin
+    .querySelector("#loginbutton")
+    .addEventListener("click", async (event) => {
+      event.preventDefault();
+      const email = divLogin.querySelector("#loginemail").value;
+      const password = divLogin.querySelector("#loginpassword").value;
+      loginUser(email, password).then((status) => {
+        if (status.success) {
+          localStorage.setItem("email", email);
+          const navbar = document.getElementById("navbarDropdown");
+          const usuario = localStorage.getItem("nameUser");
+          navbar.textContent = usuario;
 
-  divLogin.querySelector('#forgotPassword').addEventListener('click', (event) => {
-    event.preventDefault();
-    const email = divLogin.querySelector('#loginemail').value;
-    forgotPassword(email);
-    event.target.parentElement.append('You have an Email');
-  });
+          window.location.hash = "#/";
+        } else {
+          divLogin.querySelector("#errors").innerHTML = status.errorText;
+        }
+      });
+    });
+
+  divLogin
+    .querySelector("#forgotPassword")
+    .addEventListener("click", (event) => {
+      event.preventDefault();
+      const email = divLogin.querySelector("#loginemail").value;
+      forgotPassword(email);
+      event.target.parentElement.append("You have an Email");
+    });
 
   return divLogin;
 }

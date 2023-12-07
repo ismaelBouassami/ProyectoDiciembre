@@ -17,6 +17,10 @@ import {getData,getDataForm,updateData,updateProfileData,supaRequest,fileRequest
       localStorage.setItem('access_token', dataLogin.access_token);
       localStorage.setItem('uid', dataLogin.user.id);
       localStorage.setItem('expirationDate', expirationDate(dataLogin.expires_in));
+      var partes = dataLogin.user.email.split('@');
+      var nombreDeUsuario = partes[0]
+      localStorage.setItem('nameUser',nombreDeUsuario);
+      
       status.success = true;
     } catch (err) {
       console.log(err);

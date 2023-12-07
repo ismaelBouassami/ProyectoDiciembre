@@ -65,11 +65,15 @@ function route(ruta) {
       break;
     case "#/allgames":
      
-
+    if (uid === "" || uid === null) {
+      alert("Debes estar logueado");
+      window.location.hash = "#/home";
+    } else {
+   
       main.innerHTML = "";
       main.append(listGames());
       mostrarJuegosPorUID(uid);
-     
+    }
       break;
     case "#/register":
       main.innerHTML = "";
@@ -80,8 +84,15 @@ function route(ruta) {
       window.location.hash = "#/";
       break;
     case "#/profile":
-      main.innerHTML = "";
-      main.append(profileForm());
+      if (uid === "" || uid === null) {
+        alert("Debes estar logueado");
+        window.location.hash = "#/home";
+      } else {
+        main.innerHTML = "";
+        main.append(profileForm());
+      }
+    
+    
       break;
     case "":
       window.location.hash = "#/";
