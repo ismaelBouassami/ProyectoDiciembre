@@ -12,6 +12,7 @@ import {
   mostrarTabla,
 } from "./src/gameViews/generateAllgames.js";
 import { listGames } from "./src/views/listGames.js";
+import { getData } from "./src/supabase/GenericSupabase.js";
 export { route };
 
 function route(ruta) {
@@ -30,6 +31,10 @@ function route(ruta) {
   const main = document.querySelector("#container");
   let uid = localStorage.getItem("uid");
   console.log("UID del usuario = " + uid);
+  const navbar = document.getElementById("navbarDropdown");
+  const usuario = localStorage.getItem("nameUser");
+  if(usuario!=null||usuario!="")
+  navbar.textContent = usuario;
   switch (ruta) {
     case "#/":
       main.innerHTML = "";
@@ -50,9 +55,14 @@ function route(ruta) {
       main.append(loginForm());
       break;
     case "#/game":
+      const idUpdate = localStorage.getItem("ID_update");
+      console.log("id update" + idUpdate);
       main.innerHTML = "";
-      mostrarJuegosPorUID(uid);
       main.append(gameTemplate());
+      if (idUpdate != null || idUpdate > 0) {
+        console.log("Entra al if de idupdate /game");
+        window.location.hash = `#/game?id=${idUpdate}`;
+      }
       listenersGame();
 
       //   if (params.get('id')) {
@@ -64,16 +74,14 @@ function route(ruta) {
       // }
       break;
     case "#/allgames":
-     
-    if (uid === "" || uid === null) {
-      alert("Debes estar logueado");
-      window.location.hash = "#/home";
-    } else {
-   
-      main.innerHTML = "";
-      main.append(listGames());
-      mostrarJuegosPorUID(uid);
-    }
+      if (uid === "" || uid === null) {
+        alert("Debes estar logueado");
+        window.location.hash = "#/home";
+      } else {
+        main.innerHTML = "";
+        main.append(listGames());
+        mostrarJuegosPorUID(uid);
+      }
       break;
     case "#/register":
       main.innerHTML = "";
@@ -91,8 +99,7 @@ function route(ruta) {
         main.innerHTML = "";
         main.append(profileForm());
       }
-    
-    
+
       break;
     case "":
       window.location.hash = "#/";

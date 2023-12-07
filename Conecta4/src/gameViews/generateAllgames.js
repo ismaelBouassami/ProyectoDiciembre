@@ -1,4 +1,5 @@
-import { supabaseKey, supabaseUrl } from "../supabase/GenericSupabase.js";
+import { getData, loadGame, supabaseKey, supabaseUrl } from "../supabase/GenericSupabase.js";
+
 export { mostrarJuegosPorUID, mostrarTabla };
 
 async function mostrarJuegosPorUID(uid) {
@@ -45,13 +46,20 @@ function mostrarTabla(juegos) {
     const startGame = document.createElement("button");
     startGame.textContent = "PLAY";
     startGame.classList.add("btn", "btn-success");
-    startGame.addEventListener("click", () => startGame(juego.id));
+    startGame.addEventListener("click", () => {
+      
+      localStorage.setItem("ID_update",juego.id);
+      window.location.hash="#/game";
+    });
     botongame.appendChild(startGame);
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "DELETE";
     deleteButton.classList.add("btn", "btn-danger");
-    deleteButton.addEventListener("click", () => eliminarJuego(juego.id));
+    deleteButton.addEventListener("click", () =>{
+      
+      eliminarJuego(juego.id)
+    });
     deleteCelda.appendChild(deleteButton);
 
     idCelda.textContent = juego.id;
@@ -62,6 +70,8 @@ function mostrarTabla(juegos) {
   const newGame = document.createElement("button");
   newGame.textContent = "New Game";
   newGame.classList.add("btn", "btn-success");
-  newGame.addEventListener("click", () => newGame());
+  newGame.addEventListener("click", () => {
+        window.location.hash="#/game"
+  });
   idCelda.appendChild(newGame);
 }

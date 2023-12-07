@@ -45,11 +45,11 @@ async function supaRequest(url, method, headers, body) {
 
   return Promise.reject(await response.json()); // En cas de problemes en el servidor retornen un reject.
 }
-async function getData() {
-  const url = `https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.1&select=*id,state_game`;
+async function getData(id) {
+  const url = `https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.${id}&select=*id,state_game`;
   const headersAux = { ...headers, Authorization: `Bearer ${supabaseKey}` };
   const data = await supaRequest(url, 'get', headersAux);
-  let id= localStorage.setItem("ID_apdate",data[0]?.id);
+  let ids= localStorage.setItem("ID_update",data[0]?.id);
   return data[0]?.state_game;
 }
 async function getDataForm(URI) {
@@ -70,7 +70,7 @@ async function updateProfileData(URI, token, data) {
   return response;
 }
 async function updateData(data) {
-  let id= localStorage.getItem("ID_apdate");
+  let id= localStorage.getItem("ID_update");
   console.log(id+"id del update");
   const url = `https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.${id}`;
   const headersAux = {
@@ -81,12 +81,10 @@ async function updateData(data) {
   const response = await supaRequest(url, 'PATCH', headersAux, {state_game :data});
   return response;
 }
-async function loadGame(state){
-  let id = localStorage.getItem('IdPartidaSubida');
- // console.log(id + " loaded id");
-  // Verifica si id tiene un valor válido
+async function loadGame(id){
+  
   if (id) {
-  let response = await fetch(`https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.1&select=*id,state_game`, {
+  let response = await fetch(`https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.${id}&select=*id,state_game`, {
   method: "GET",
   headers: {
     apikey: supabaseKey,
@@ -104,8 +102,6 @@ async function loadGame(state){
     // Manejo de los datos obtenidos
     let stateGame = data[0]?.state_game; // Obtener el valor de state_game, asumiendo que hay solo un resultado
     console.log('Valor de state_game:', stateGame);
- 
-    console.log('Valor de jugador rojo: ', data[0]?.state_game.jugadorRojo);
     return    data[0]?.state_game;
   })
   .catch(error => {
@@ -120,6 +116,7 @@ async function loadGame(state){
 }
 
 async function saveGame(state) {
+  const uid= localStorage.getItem("uid");
   let response = await fetch(
     "https://untktmroloftabtrymov.supabase.co/rest/v1/Game",
     {
@@ -131,7 +128,7 @@ async function saveGame(state) {
         "Content-Type": " application/json",
         Prefer: " return=representation",
       },
-      body: JSON.stringify({state_game: state }),
+      body: JSON.stringify({state_game: state ,uid:uid}),
     }
   )
   .then(response => {

@@ -34,9 +34,7 @@ function loginForm() {
       loginUser(email, password).then((status) => {
         if (status.success) {
           localStorage.setItem("email", email);
-          const navbar = document.getElementById("navbarDropdown");
-          const usuario = localStorage.getItem("nameUser");
-          navbar.textContent = usuario;
+          
 
           window.location.hash = "#/";
         } else {

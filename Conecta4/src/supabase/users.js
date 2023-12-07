@@ -65,7 +65,9 @@ import {getData,getDataForm,updateData,updateProfileData,supaRequest,fileRequest
       console.log(lOData);
     });
     localStorage.removeItem('access_token');
+    localStorage.removeItem('ID_update');
     localStorage.removeItem('uid');
+    localStorage.setItem('nameUser',"Usuario");
   }
   
   async function updateProfile(profile) {

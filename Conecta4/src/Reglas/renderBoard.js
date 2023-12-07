@@ -41,9 +41,11 @@ function listenersGame() {
   });
   const cargar = document.getElementById("cargar");
   cargar.addEventListener("click", async function () {
-    let statecopy = await getData();
+    const idUpdate= localStorage.getItem("ID_update");
+    let statecopy = await getData(idUpdate);
     console.log("statecopy", statecopy);
     if (statecopy !== null) {
+      guardar.style.display="none";
       renderBoard(statecopy);
     }
     console.log("Cargar partida");
@@ -156,13 +158,13 @@ function renderBoard(statecopy) {
             statecopy.overCasilla[0][columna] = 1;
             divSeleccionado.classList.remove("casillaover");
             divSeleccionado.classList.add("casillaOverRoja");
-            console.log("poniendo rojo");
+            /* console.log("poniendo rojo"); */
           } else {
             //  console.log("Azulover");
             statecopy.overCasilla[0][columna] = 2;
             divSeleccionado.classList.remove("casillaover");
             divSeleccionado.classList.add("casillaOverAzul");
-            console.log("poniendo azul");
+            /* console.log("poniendo azul"); */
           }
         }
       });
@@ -173,13 +175,13 @@ function renderBoard(statecopy) {
           divSeleccionado.classList.remove("casillaOverRoja");
           divSeleccionado.classList.add("casillaover");
 
-          console.log("quitando rojo");
+          /* console.log("quitando rojo"); */
         } else {
           console.log();
           statecopy.overCasilla[0][columna] = 0;
           divSeleccionado.classList.remove("casillaOverAzul");
           divSeleccionado.classList.add("casillaover");
-          console.log("quitando azul");
+         /*  console.log("quitando azul"); */
         }
       });
     }
