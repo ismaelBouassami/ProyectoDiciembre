@@ -29,7 +29,8 @@ function registerForm() {
     event.preventDefault();
     const email = divLogin.querySelector('#signupemail').value;
     const password = divLogin.querySelector('#signuppassword').value;
-    const dataLogin = await registerUser(email, password);
+    const dataLogin =  registerUser(email, password);
+    alert("RegistroCompletado");
     console.log(dataLogin);
   });
 

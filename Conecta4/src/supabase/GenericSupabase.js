@@ -1,4 +1,4 @@
-export { saveGame ,loadGame,getData,updateData,supabaseKey,supabaseUrl,updateProfileData, supaRequest,headers,getFileRequest,fileRequest,getDataForm};
+export { saveGame ,loadGame,getData,eliminarJuego,updateData,supabaseKey,supabaseUrl,updateProfileData, supaRequest,headers,getFileRequest,fileRequest,getDataForm};
 // Configura tus credenciales y URL de Supabase
 const supabaseUrl = "https://untktmroloftabtrymov.supabase.co";
 const supabaseKey ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVudGt0bXJvbG9mdGFidHJ5bW92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkyNjY0MzYsImV4cCI6MjAxNDg0MjQzNn0.9UCatd_9uVYjwsztpV1xbsOaM3PEq3gq_kBxJPXxBsM";
@@ -80,6 +80,34 @@ async function updateData(data) {
   };
   const response = await supaRequest(url, 'PATCH', headersAux, {state_game :data});
   return response;
+}
+async function eliminarJuego(id) {
+  if (id) {
+    try {
+      const response = await fetch(`https://untktmroloftabtrymov.supabase.co/rest/v1/Game?id=eq.${id}`, {
+        method: "DELETE",
+        headers: {
+          apikey: supabaseKey,
+          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVudGt0bXJvbG9mdGFidHJ5bW92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkyNjY0MzYsImV4cCI6MjAxNDg0MjQzNn0.9UCatd_9uVYjwsztpV1xbsOaM3PEq3gq_kBxJPXxBsM",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log(`Juego con ID ${id} eliminado exitosamente.`);
+        return true;
+      } else {
+        console.error('La solicitud de eliminación no fue exitosa.');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error durante la solicitud de eliminación:', error);
+      return false;
+    }
+  } else {
+    console.error('El valor de id es undefined. Asegúrate de que id tenga un valor válido.');
+    return false;
+  }
 }
 async function loadGame(id){
   

@@ -1,4 +1,4 @@
-import { getData, loadGame, supabaseKey, supabaseUrl } from "../supabase/GenericSupabase.js";
+import { getData, loadGame,eliminarJuego, supabaseKey, supabaseUrl } from "../supabase/GenericSupabase.js";
 
 export { mostrarJuegosPorUID, mostrarTabla };
 
@@ -58,7 +58,9 @@ function mostrarTabla(juegos) {
     deleteButton.classList.add("btn", "btn-danger");
     deleteButton.addEventListener("click", () =>{
       
-      eliminarJuego(juego.id)
+      eliminarJuego(juego.id);
+      window.location.hash="#/refresh";
+      
     });
     deleteCelda.appendChild(deleteButton);
 

@@ -101,6 +101,9 @@ function route(ruta) {
       }
 
       break;
+      case "#/refresh":
+      window.location.hash = "#/allgames";
+      break;
     case "":
       window.location.hash = "#/";
       break;
