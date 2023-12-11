@@ -56,9 +56,9 @@ function mostrarTabla(juegos) {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "DELETE";
     deleteButton.classList.add("btn", "btn-danger");
-    deleteButton.addEventListener("click", () =>{
+    deleteButton.addEventListener("click", async () =>{
       
-      eliminarJuego(juego.id);
+      await eliminarJuego(juego.id);
       window.location.hash="#/refresh";
       
     });
