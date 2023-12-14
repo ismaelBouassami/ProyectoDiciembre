@@ -32,9 +32,7 @@ function route(ruta) {
   let uid = localStorage.getItem("uid");
   console.log("UID del usuario = " + uid);
   const navbar = document.getElementById("navbarDropdown");
-  const usuario = localStorage.getItem("nameUser");
-  if(usuario!=null||usuario!="")
-  navbar.textContent = usuario;
+  
   switch (ruta) {
     case "#/":
       main.innerHTML = "";
@@ -76,6 +74,7 @@ function route(ruta) {
     case "#/allgames":
       if (uid === "" || uid === null) {
         alert("Debes estar logueado");
+        localStorage.setItem('nameUser',"Usuario");
         window.location.hash = "#/home";
       } else {
         main.innerHTML = "";
